@@ -1,14 +1,21 @@
 package slotMachine;
 
+import java.awt.Image;
+import java.util.ArrayList;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public class SlotMachine {
 
 	protected Shell shell;
+	ArrayList<Image> primo = new ArrayList<Image>();
+	ArrayList<Image> secondo = new ArrayList<Image>();
+	ArrayList<Image> terzo = new ArrayList<Image>();
 
 	/**
 	 * Launch the application.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
