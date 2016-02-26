@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
 
 public class SlotMachine {
 
@@ -47,9 +49,12 @@ public class SlotMachine {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setSize(506, 423);
 		shell.setText("SWT Application");
+		
+		Label lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setBounds(20, 21, 442, 64);
+		lblNewLabel.setText("New Label");
 
 	}
-
 }
