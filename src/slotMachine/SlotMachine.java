@@ -2,13 +2,15 @@ package slotMachine;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.forms.widgets.FormToolkit;
+
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
+
 
 public class SlotMachine {
 
-	protected Shell shlSlotMachine;
-	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
-
+	protected Shell shell;
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -28,9 +30,9 @@ public class SlotMachine {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shlSlotMachine.open();
-		shlSlotMachine.layout();
-		while (!shlSlotMachine.isDisposed()) {
+		shell.open();
+		shell.layout();
+		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -41,10 +43,15 @@ public class SlotMachine {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlSlotMachine = new Shell();
-		shlSlotMachine.setSize(450, 300);
-		shlSlotMachine.setText("Slot Machine");
+
+		shell = new Shell();
+		shell.setSize(506, 423);
+		shell.setText("SWT Application");
 		
+		Label lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setBounds(20, 21, 442, 64);
+		lblNewLabel.setText("New Label");
+
 
 	}
 }
