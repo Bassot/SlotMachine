@@ -1,21 +1,16 @@
 package slotMachine;
 
-import java.awt.Image;
-import java.util.ArrayList;
-
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class SlotMachine {
 
-	protected Shell shell;
-	ArrayList<Image> primo = new ArrayList<Image>();
-	ArrayList<Image> secondo = new ArrayList<Image>();
-	ArrayList<Image> terzo = new ArrayList<Image>();
+	protected Shell shlSlotMachine;
+	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 
 	/**
 	 * Launch the application.
-	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -33,9 +28,9 @@ public class SlotMachine {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlSlotMachine.open();
+		shlSlotMachine.layout();
+		while (!shlSlotMachine.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -46,10 +41,10 @@ public class SlotMachine {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(450, 300);
-		shell.setText("SWT Application");
+		shlSlotMachine = new Shell();
+		shlSlotMachine.setSize(450, 300);
+		shlSlotMachine.setText("Slot Machine");
+		
 
 	}
-
 }
