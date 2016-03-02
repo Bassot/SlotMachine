@@ -12,11 +12,18 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import org.eclipse.ui.forms.widgets.FormToolkit;
+
+
 
 public class SlotMachine {
 
+
 	protected Shell shell;
-	ArrayList<String> img = new ArrayList<String>();
+	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
+	
+	ArrayList <String> img = new ArrayList <String>();	
+
 	/**
 	 * Launch the application.
 	 * @param args
@@ -54,6 +61,7 @@ public class SlotMachine {
 		shell.setSize(506, 423);
 		shell.setText("SWT Application");
 		
+
 		img.add("/img/Angurie.jpg");
 		img.add("/img/Arancia.jpg");
 		img.add("/img/Banana.jpg");
@@ -64,6 +72,28 @@ public class SlotMachine {
 		img.add("/img/Uva.jpg");
 		
 		
+
+		
+		
+		Button btnGira = new Button(shell, SWT.NONE);
+		btnGira.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
+		btnGira.setBounds(405, 350, 75, 25);
+		btnGira.setText("Gira");
+		
+		Label lblNewLabel = formToolkit.createLabel(shell, "", SWT.NONE);
+		lblNewLabel.setBounds(10, 95, 150, 150);
+		
+		Label lblNewLabel_1 = formToolkit.createLabel(shell, "", SWT.NONE);
+		lblNewLabel_1.setBounds(166, 95, 150, 150);
+		
+		Label lblNewLabel_2 = formToolkit.createLabel(shell, "", SWT.NONE);
+		lblNewLabel_2.setBounds(322, 95, 158, 150);
+
 
 
 	}
