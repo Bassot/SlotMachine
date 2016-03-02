@@ -11,9 +11,8 @@ import org.eclipse.swt.SWT;
 public class SlotMachine {
 
 	protected Shell shell;
-	ArrayList<Image> primo = new ArrayList<Image>();
-	ArrayList<Image> secondo = new ArrayList<Image>();
-	ArrayList<Image> terzo = new ArrayList<Image>();
+	ArrayList<String> img = new ArrayList<String>();
+
 
 	/**
 	 * Launch the application.
@@ -51,6 +50,8 @@ public class SlotMachine {
 		shell = new Shell();
 		shell.setSize(506, 423);
 		shell.setText("SWT Application");
+		
+		img.add(index, element);
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
 		lblNewLabel.setBounds(20, 21, 442, 64);
