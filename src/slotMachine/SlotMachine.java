@@ -4,6 +4,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import org.eclipse.swt.widgets.Label;
+
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -16,6 +19,7 @@ public class SlotMachine {
 	protected Shell shell;
 	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 	
+	ArrayList <String> img = new ArrayList <String>();	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -52,6 +56,8 @@ public class SlotMachine {
 		shell = new Shell();
 		shell.setSize(506, 423);
 		shell.setText("SWT Application");
+		
+		
 		
 		Button btnGira = new Button(shell, SWT.NONE);
 		btnGira.addSelectionListener(new SelectionAdapter() {
