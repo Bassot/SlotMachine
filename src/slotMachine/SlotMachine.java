@@ -23,7 +23,7 @@ public class SlotMachine {
 	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 	
 	ArrayList <String> img = new ArrayList <String>();	
-
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -71,20 +71,6 @@ public class SlotMachine {
 		img.add("/img/Mela.jpg");
 		img.add("/img/Uva.jpg");
 		
-		
-
-		
-		
-		Button btnGira = new Button(shell, SWT.NONE);
-		btnGira.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				
-			}
-		});
-		btnGira.setBounds(405, 350, 75, 25);
-		btnGira.setText("Gira");
-		
 		Label lblNewLabel = formToolkit.createLabel(shell, "", SWT.NONE);
 		lblNewLabel.setBounds(10, 95, 150, 150);
 		
@@ -93,6 +79,17 @@ public class SlotMachine {
 		
 		Label lblNewLabel_2 = formToolkit.createLabel(shell, "", SWT.NONE);
 		lblNewLabel_2.setBounds(322, 95, 158, 150);
+		
+		Button btnGira = new Button(shell, SWT.NONE);
+		btnGira.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+			}
+		});
+		btnGira.setBounds(405, 350, 75, 25);
+		btnGira.setText("Gira");
+		
 
 
 
