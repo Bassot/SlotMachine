@@ -13,6 +13,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 
 public class SlotMachine {
@@ -72,6 +73,7 @@ public class SlotMachine {
 		img.add("/img/Uva.jpg");
 		
 		Label lbl1 = formToolkit.createLabel(shell, "", SWT.NONE);
+		lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, "/slotMachine/img/Anguria.jpg"));
 		lbl1.setBounds(10, 95, 150, 150);
 		
 		Label lbl2 = formToolkit.createLabel(shell, "", SWT.NONE);
