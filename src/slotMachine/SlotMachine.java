@@ -86,7 +86,6 @@ public class SlotMachine {
 			public void widgetSelected(SelectionEvent e) {
 				
 				n = (int)(Math.random()*8);
-				//lbl1.setImage(SWTResourceManager.getImage(main.class, img.get(n)));
 			}
 		});
 		btnGira.setBounds(405, 350, 75, 25);
