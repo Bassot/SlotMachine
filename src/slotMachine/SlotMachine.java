@@ -29,6 +29,9 @@ public class SlotMachine {
 	private Text textCrediti;
 	private Text textBet;
 	private Text textWinnerPaid;
+	private int crediti;
+	private int bet;
+	private boolean vinto;
 
 	/**
 	 * Launch the application.
@@ -95,6 +98,7 @@ public class SlotMachine {
 
 				Thread t = new Thread() {
 					public void run() {
+						vinto=false;
 						for (int i = 0; i < 10; i++) {
 
 							Display.getDefault().asyncExec(new Runnable() {
@@ -127,6 +131,7 @@ public class SlotMachine {
 				if (n[1] == n[2] && n[1] == n[3]) {
 					//JOptionPane.showMessageDialog(null, "Hai vinto!");
 					System.out.println("Hai vinto!");
+					vinto=true;
 				}
 			}
 		});
@@ -139,6 +144,17 @@ public class SlotMachine {
 		formToolkit.adapt(lblNewLabel, true, true);
 		
 		Button btnReset = new Button(shell, SWT.NONE);
+		btnReset.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				lbl1.setImage(null);
+				lbl2.setImage(null);
+				lbl3.setImage(null);
+				textCrediti.setText("");
+				textBet.setText("");
+				textWinnerPaid.setText("");
+			}
+		});
 		btnReset.setBounds(21, 398, 75, 48);
 		formToolkit.adapt(btnReset, true, true);
 		btnReset.setText("Reset");
@@ -149,6 +165,14 @@ public class SlotMachine {
 		btnPayTable.setText("Pay table");
 		
 		Button btnBetOne = new Button(shell, SWT.NONE);
+		btnBetOne.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				crediti=Integer.parseInt(textCrediti.getText());
+				bet=Integer.parseInt(textBet.getText());
+				
+			}
+		});
 		btnBetOne.setBounds(219, 398, 75, 48);
 		formToolkit.adapt(btnBetOne, true, true);
 		btnBetOne.setText("Bet one");
