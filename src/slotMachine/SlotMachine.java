@@ -16,6 +16,7 @@ import org.eclipse.swt.events.SelectionEvent;
 
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Text;
 
 public class SlotMachine {
 
@@ -25,6 +26,9 @@ public class SlotMachine {
 	ArrayList<String> img = new ArrayList<String>();
 
 	int n[] = new int[5];
+	private Text textCrediti;
+	private Text textBet;
+	private Text textWinnerPaid;
 
 	/**
 	 * Launch the application.
@@ -61,7 +65,7 @@ public class SlotMachine {
 	protected void createContents() {
 
 		shell = new Shell();
-		shell.setSize(564, 487);
+		shell.setSize(564, 509);
 		shell.setText("SWT Application");
 
 		img.add("/slotMachine/img/Anguria.jpg");
@@ -124,13 +128,60 @@ public class SlotMachine {
 				}
 			}
 		});
-		btnGira.setBounds(405, 350, 75, 25);
+		btnGira.setBounds(444, 380, 81, 66);
 		btnGira.setText("SPIN");
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
 		lblNewLabel.setImage(SWTResourceManager.getImage(SlotMachine.class, "/slotMachine/img/Casino.png"));
 		lblNewLabel.setBounds(38, 10, 500, 124);
 		formToolkit.adapt(lblNewLabel, true, true);
+		
+		Button btnReset = new Button(shell, SWT.NONE);
+		btnReset.setBounds(21, 398, 75, 48);
+		formToolkit.adapt(btnReset, true, true);
+		btnReset.setText("Reset");
+		
+		Button btnPayTable = new Button(shell, SWT.NONE);
+		btnPayTable.setBounds(123, 398, 75, 48);
+		formToolkit.adapt(btnPayTable, true, true);
+		btnPayTable.setText("Pay table");
+		
+		Button btnBetOne = new Button(shell, SWT.NONE);
+		btnBetOne.setBounds(219, 398, 75, 48);
+		formToolkit.adapt(btnBetOne, true, true);
+		btnBetOne.setText("Bet one");
+		
+		Button btnBetMax = new Button(shell, SWT.NONE);
+		btnBetMax.setBounds(322, 398, 75, 48);
+		formToolkit.adapt(btnBetMax, true, true);
+		btnBetMax.setText("Bet max");
+		
+		textCrediti = new Text(shell, SWT.BORDER);
+		textCrediti.setBounds(20, 328, 101, 21);
+		formToolkit.adapt(textCrediti, true, true);
+		
+		Label lblCredits = new Label(shell, SWT.NONE);
+		lblCredits.setBounds(41, 355, 55, 15);
+		formToolkit.adapt(lblCredits, true, true);
+		lblCredits.setText("Credits");
+		
+		textBet = new Text(shell, SWT.BORDER);
+		textBet.setBounds(169, 328, 55, 21);
+		formToolkit.adapt(textBet, true, true);
+		
+		Label lblBet = new Label(shell, SWT.NONE);
+		lblBet.setBounds(179, 355, 33, 15);
+		formToolkit.adapt(lblBet, true, true);
+		lblBet.setText("Bet");
+		
+		textWinnerPaid = new Text(shell, SWT.BORDER);
+		textWinnerPaid.setBounds(279, 328, 76, 21);
+		formToolkit.adapt(textWinnerPaid, true, true);
+		
+		Label lblWinnerPaid = new Label(shell, SWT.NONE);
+		lblWinnerPaid.setBounds(289, 355, 66, 15);
+		formToolkit.adapt(lblWinnerPaid, true, true);
+		lblWinnerPaid.setText("Winner paid");
 
 	}
 }
