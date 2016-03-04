@@ -35,6 +35,7 @@ public class SlotMachine {
 	private Text textWinnerPaid;
 	private int crediti;
 	private int bet;
+	private int vincita=0;
 	private boolean vinto;
 
 	/**
@@ -99,7 +100,9 @@ public class SlotMachine {
 		btnGira.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-
+				crediti=Integer.parseInt(textCrediti.getText());
+				bet=Integer.parseInt(textBet.getText());
+				textCrediti.setText(Integer.toString(crediti-bet));
 				Thread t = new Thread() {
 					public void run() {
 						vinto=false;
@@ -128,15 +131,23 @@ public class SlotMachine {
 							}
 
 						}
+						
+						if (n[1] == n[2] && n[1] == n[3]) {
+							JOptionPane.showMessageDialog(null, "Hai vinto!");
+							//System.out.println("Hai vinto!");
+							vinto=true;
+							//textWinnerPaid.setText(Integer.toString(bet*2));
+						}
+						
 					}
 				};
 				t.start();
-				if (n[1] == n[2] && n[1] == n[3]) {
-					// JOptionPane.showMessageDialog(null, "Hai vinto!");
-					System.out.println("Hai vinto!");
-					vinto=true;
+				if(vinto){
+					vincita=vincita+(bet*2);
+					textWinnerPaid.setText(Integer.toString(vincita));
 				}
 			}
+			
 		});
 		btnGira.setBounds(444, 380, 81, 66);
 		btnGira.setText("SPIN");
@@ -211,6 +222,7 @@ public class SlotMachine {
 
 		textWinnerPaid = new Text(shell, SWT.BORDER);
 		textWinnerPaid.setBounds(279, 328, 76, 21);
+		textWinnerPaid.setText(Integer.toString(vincita));
 		formToolkit.adapt(textWinnerPaid, true, true);
 
 		Label lblWinnerPaid = new Label(shell, SWT.NONE);
