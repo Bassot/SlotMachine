@@ -7,6 +7,8 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -22,7 +24,7 @@ public class SlotMachine {
 
 	ArrayList<String> img = new ArrayList<String>();
 
-	int n;
+	int n[] = new int[5];
 
 	/**
 	 * Launch the application.
@@ -73,13 +75,13 @@ public class SlotMachine {
 
 		Label lbl1 = formToolkit.createLabel(shell, "", SWT.NONE);
 
-		lbl1.setBounds(10, 95, 177, 170);
+		lbl1.setBounds(10, 140, 177, 170);
 
 		Label lbl2 = formToolkit.createLabel(shell, "", SWT.NONE);
-		lbl2.setBounds(193, 95, 181, 170);
+		lbl2.setBounds(193, 140, 181, 170);
 
 		Label lbl3 = formToolkit.createLabel(shell, "", SWT.NONE);
-		lbl3.setBounds(380, 95, 168, 170);
+		lbl3.setBounds(380, 140, 168, 170);
 
 		Button btnGira = new Button(shell, SWT.NONE);
 		btnGira.addSelectionListener(new SelectionAdapter() {
@@ -89,22 +91,23 @@ public class SlotMachine {
 				Thread t = new Thread() {
 					public void run() {
 						for (int i = 0; i < 10; i++) {
-							
-							Display.getDefault().asyncExec(	new Runnable() {
+
+							Display.getDefault().asyncExec(new Runnable() {
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
-									n = (int) (Math.random() * 8);
-									lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n)));
-									n = (int) (Math.random() * 8);
-									lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n)));
-									n = (int) (Math.random() * 8);
-									lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n)));
-									
+
+									n[1] = (int) (Math.random() * 8);
+									lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[1])));
+									n[2] = (int) (Math.random() * 8);
+									lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[2])));
+									n[3] = (int) (Math.random() * 8);
+									lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[3])));
 								}
-								
+
 							});
 							
+
 							try {
 								Thread.sleep(100); // 1000 milliseconds is one
 													// second.
@@ -116,10 +119,18 @@ public class SlotMachine {
 					}
 				};
 				t.start();
+				if (n[1] == n[2] && n[1] == n[3]) {
+					JOptionPane.showMessageDialog(null, "Hai vinto!");
+				}
 			}
 		});
 		btnGira.setBounds(405, 350, 75, 25);
-		btnGira.setText("Gira");
+		btnGira.setText("SPIN");
+		
+		Label lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setImage(SWTResourceManager.getImage(SlotMachine.class, "/slotMachine/img/Casino.png"));
+		lblNewLabel.setBounds(38, 10, 500, 124);
+		formToolkit.adapt(lblNewLabel, true, true);
 
 	}
 }
