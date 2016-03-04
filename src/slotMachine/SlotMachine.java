@@ -66,6 +66,7 @@ public class SlotMachine {
 
 		shell = new Shell();
 		shell.setSize(564, 509);
+		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		shell.setText("SWT Application");
 
 		img.add("/slotMachine/img/Anguria.jpg");
@@ -124,7 +125,8 @@ public class SlotMachine {
 				};
 				t.start();
 				if (n[1] == n[2] && n[1] == n[3]) {
-					JOptionPane.showMessageDialog(null, "Hai vinto!");
+					//JOptionPane.showMessageDialog(null, "Hai vinto!");
+					System.out.println("Hai vinto!");
 				}
 			}
 		});
