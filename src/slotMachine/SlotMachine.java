@@ -61,6 +61,7 @@ public class SlotMachine {
 	protected void createContents() {
 
 		shell = new Shell();
+		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		shell.setSize(564, 487);
 		shell.setText("SWT Application");
 
@@ -120,7 +121,8 @@ public class SlotMachine {
 				};
 				t.start();
 				if (n[1] == n[2] && n[1] == n[3]) {
-					JOptionPane.showMessageDialog(null, "Hai vinto!");
+					//JOptionPane.showMessageDialog(null, "Hai vinto!");
+					System.out.println("Hai vinto!");
 				}
 			}
 		});
