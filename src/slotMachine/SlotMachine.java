@@ -29,7 +29,8 @@ public class SlotMachine {
 
 	ArrayList<String> img = new ArrayList<String>();
 
-	int n[] = new int[5];
+	int n;
+	int x[] = new int[10];
 	private Text textCrediti;
 	private Text textBet;
 	private Text textWinnerPaid;
@@ -99,38 +100,46 @@ public class SlotMachine {
 
 				Thread t = new Thread() {
 					public void run() {
-						for (int i = 0; i < 10; i++) {
+						n = (int) (Math.random() * 100);
+						if (n < 20) {
+							
+							for (int i = 0; i < 10; i++) {
 
-							Display.getDefault().asyncExec(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
+								Display.getDefault().asyncExec(new Runnable() {
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+										x[1] = (int) (Math.random() * 8);
+										
+										lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+										lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+										lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+										JOptionPane.showMessageDialog(null, "Hai vinto!");
+									}
 
-									n[1] = (int) (Math.random() * 8);
-									lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[1])));
-									n[2] = (int) (Math.random() * 8);
-									lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[2])));
-									n[3] = (int) (Math.random() * 8);
-									lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[3])));
+								});
+
+								try {
+									Thread.sleep(100); // 1000 milliseconds is
+														// one
+														// second.
+								} catch (InterruptedException ex) {
+									Thread.currentThread().interrupt();
 								}
-
-							});
-
-							try {
-								Thread.sleep(100); // 1000 milliseconds is one
-													// second.
-							} catch (InterruptedException ex) {
-								Thread.currentThread().interrupt();
 							}
-
+						}
+						else{
+							
+							/*x[1] = (int) (Math.random() * 8);
+							lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+							x[2] = (int) (Math.random() * 8);
+							lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[2])));
+							x[3] = (int) (Math.random() * 8);
+							lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[3])));*/
 						}
 					}
 				};
 				t.start();
-				if (n[1] == n[2] && n[1] == n[3]) {
-					// JOptionPane.showMessageDialog(null, "Hai vinto!");
-					System.out.println("Hai vinto!");
-				}
 			}
 		});
 		btnGira.setBounds(444, 380, 81, 66);
@@ -202,7 +211,7 @@ public class SlotMachine {
 				shell.setSize(564, 509);
 				shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				shell.setText("SWT Application");
-				
+
 			}
 		});
 		btnQuote.setBounds(450, 328, 75, 25);
