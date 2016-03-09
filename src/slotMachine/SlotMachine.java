@@ -100,52 +100,65 @@ public class SlotMachine {
 		btnGira.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				crediti=Integer.parseInt(textCrediti.getText());
-				bet=Integer.parseInt(textBet.getText());
-				textCrediti.setText(Integer.toString(crediti-bet));
-				Thread t = new Thread() {
-					public void run() {
-						vinto=false;
-						for (int i = 0; i < 10; i++) {
-
-							Display.getDefault().asyncExec(new Runnable() {
-								@Override
-								public void run() {
-									// TODO Auto-generated method stub
-
-									n[1] = (int) (Math.random() * 8);
-									lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[1])));
-									n[2] = (int) (Math.random() * 8);
-									lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[2])));
-									n[3] = (int) (Math.random() * 8);
-									lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[3])));
+				try{
+					crediti=Integer.parseInt(textCrediti.getText());
+					bet=Integer.parseInt(textBet.getText());
+					if(crediti==0 && bet==0){
+						JOptionPane.showMessageDialog(null, "Hai finito i crediti!");
+					}else{
+						textCrediti.setText(Integer.toString(crediti-bet));
+						Thread t = new Thread() {
+							public void run() {
+								vinto=false;
+								for (int i = 0; i < 10; i++) {
+		
+									Display.getDefault().asyncExec(new Runnable() {
+										@Override
+										public void run() {
+											// TODO Auto-generated method stub
+		
+											n[1] = (int) (Math.random() * 8);
+											lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[1])));
+											n[2] = (int) (Math.random() * 8);
+											lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[2])));
+											n[3] = (int) (Math.random() * 8);
+											lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(n[3])));
+										}
+		
+									});
+		
+									try {
+										Thread.sleep(100); // 1000 milliseconds is one
+															// second.
+									} catch (InterruptedException ex) {
+										Thread.currentThread().interrupt();
+									}
+		
 								}
-
-							});
-
-							try {
-								Thread.sleep(100); // 1000 milliseconds is one
-													// second.
-							} catch (InterruptedException ex) {
-								Thread.currentThread().interrupt();
+								
+								if (n[1] == n[2] && n[1] == n[3]) {
+									JOptionPane.showMessageDialog(null, "Hai vinto!");
+									//vincita=vincita+(bet*2);
+									//System.out.println(vincita);
+									vinto=true;
+									
+								}
+								
 							}
-
-						}
-						
-						if (n[1] == n[2] && n[1] == n[3]) {
-							JOptionPane.showMessageDialog(null, "Hai vinto!");
-							//System.out.println("Hai vinto!");
-							vinto=true;
-							//textWinnerPaid.setText(Integer.toString(bet*2));
-						}
-						
+						};
+						t.start();
 					}
-				};
-				t.start();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,"Sei un .... Sbadato.. Ti sei dimenticato di qualcosa","Error",JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+				
 				if(vinto){
 					vincita=vincita+(bet*2);
 					textWinnerPaid.setText(Integer.toString(vincita));
 				}
+				
 			}
 			
 		});
@@ -166,7 +179,8 @@ public class SlotMachine {
 				lbl3.setImage(null);
 				textCrediti.setText("");
 				textBet.setText("");
-				textWinnerPaid.setText("");
+				vincita=0;
+				textWinnerPaid.setText(Integer.toString(vincita));
 			}
 		});
 		btnReset.setBounds(21, 398, 75, 48);
@@ -177,7 +191,14 @@ public class SlotMachine {
 		btnPayTable.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-
+				JOptionPane.showMessageDialog(null, "Hai vinto " +vincita+ "Euro!!");
+				lbl1.setImage(null);
+				lbl2.setImage(null);
+				lbl3.setImage(null);
+				textCrediti.setText("");
+				textBet.setText("");
+				vincita=0;
+				textWinnerPaid.setText(Integer.toString(vincita));
 			}
 		});
 		btnPayTable.setBounds(123, 398, 75, 48);
@@ -198,6 +219,16 @@ public class SlotMachine {
 		btnBetOne.setText("Bet one");
 
 		Button btnBetMax = new Button(shell, SWT.NONE);
+		btnBetMax.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				crediti=Integer.parseInt(textCrediti.getText());
+				textBet.setText(Integer.toString(crediti));
+				crediti=0;
+				textCrediti.setText(Integer.toString(crediti));
+				
+			}
+		});
 		btnBetMax.setBounds(322, 398, 75, 48);
 		formToolkit.adapt(btnBetMax, true, true);
 		btnBetMax.setText("Bet max");
