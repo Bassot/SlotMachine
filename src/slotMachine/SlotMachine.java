@@ -106,7 +106,9 @@ public class SlotMachine {
 					if(crediti==0 && bet==0){
 						JOptionPane.showMessageDialog(null, "Hai finito i crediti!");
 					}else{
-						textCrediti.setText(Integer.toString(crediti-bet));
+						if(crediti!=0){
+							textCrediti.setText(Integer.toString(crediti-bet));
+						}
 						Thread t = new Thread() {
 							public void run() {
 								vinto=false;
@@ -158,6 +160,15 @@ public class SlotMachine {
 					vincita=vincita+(bet*2);
 					textWinnerPaid.setText(Integer.toString(vincita));
 				}
+				if(crediti==0){
+					bet=0;
+					crediti=0;
+					textBet.setText(Integer.toString(bet));
+					textCrediti.setText(Integer.toString(crediti));
+
+				}
+				
+				
 				
 			}
 			
@@ -222,10 +233,17 @@ public class SlotMachine {
 		btnBetMax.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				crediti=Integer.parseInt(textCrediti.getText());
-				textBet.setText(Integer.toString(crediti));
-				crediti=0;
-				textCrediti.setText(Integer.toString(crediti));
+				try{
+					crediti=Integer.parseInt(textCrediti.getText());
+					textBet.setText(Integer.toString(crediti));
+					crediti=0;
+					textCrediti.setText(Integer.toString(crediti));
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,"Sei un .... Sbadato.. Ti sei dimenticato di qualcosa","Error",JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+				
 				
 			}
 		});
