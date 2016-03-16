@@ -34,7 +34,10 @@ public class SlotMachine {
 	private Text textCrediti;
 	private Text textBet;
 	private Text textWinnerPaid;
-
+	
+	private final int prob = 30; // PROBABILITA'
+	private int i;
+	
 	/**
 	 * Launch the application.
 	 * 
@@ -101,43 +104,67 @@ public class SlotMachine {
 				Thread t = new Thread() {
 					public void run() {
 						n = (int) (Math.random() * 100);
-						if (n < 20) {
-							
-							for (int i = 0; i < 10; i++) {
+						for (i = 0; i < 10; i++) {
 
-								Display.getDefault().asyncExec(new Runnable() {
-									@Override
-									public void run() {
-										// TODO Auto-generated method stub
+							Display.getDefault().asyncExec(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									if (i < 9) {
 										x[1] = (int) (Math.random() * 8);
-										
 										lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+										x[1] = (int) (Math.random() * 8);
 										lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+										x[1] = (int) (Math.random() * 8);
 										lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
-										JOptionPane.showMessageDialog(null, "Hai vinto!");
+									} else {
+										if (n < prob) {
+											x[1] = (int) (Math.random() * 8);
+											lbl1.setImage(
+													SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+											lbl2.setImage(
+													SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+											lbl3.setImage(
+													SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+											// JOptionPane.showMessageDialog(null,
+											// "Hai vinto!");
+										} else {
+											x[1] = (int) (Math.random() * 8);
+											x[2] = (int) (Math.random() * 8);
+											x[3] = (int) (Math.random() * 8);
+
+											if (x[1] == x[2] && x[1] == x[3]) {
+												lbl1.setImage(
+														SWTResourceManager.getImage(SlotMachine.class, img.get(6)));
+												lbl2.setImage(
+														SWTResourceManager.getImage(SlotMachine.class, img.get(2)));
+												lbl3.setImage(
+														SWTResourceManager.getImage(SlotMachine.class, img.get(5)));
+											} else {
+												lbl1.setImage(
+														SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
+												lbl2.setImage(
+														SWTResourceManager.getImage(SlotMachine.class, img.get(x[2])));
+												lbl3.setImage(
+														SWTResourceManager.getImage(SlotMachine.class, img.get(x[3])));
+											}
+										}
 									}
-
-								});
-
-								try {
-									Thread.sleep(100); // 1000 milliseconds is
-														// one
-														// second.
-								} catch (InterruptedException ex) {
-									Thread.currentThread().interrupt();
 								}
+
+							});
+							try {
+								Thread.sleep(100); // 1000 milliseconds is
+													// one
+													// second.
+							} catch (InterruptedException ex) {
+								Thread.currentThread().interrupt();
 							}
 						}
-						else{
-							
-							/*x[1] = (int) (Math.random() * 8);
-							lbl1.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
-							x[2] = (int) (Math.random() * 8);
-							lbl2.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[2])));
-							x[3] = (int) (Math.random() * 8);
-							lbl3.setImage(SWTResourceManager.getImage(SlotMachine.class, img.get(x[3])));*/
-						}
+
+						
 					}
+
 				};
 				t.start();
 			}
