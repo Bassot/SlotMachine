@@ -37,7 +37,7 @@ public class SlotMachine {
 	private int crediti;
 	private int bet;
 	private int vincita = 0;
-	private boolean vinto;
+	private boolean vinto=false;
 
 	private final int prob = 30; // PROBABILITA'
 	private int i;
@@ -104,6 +104,7 @@ public class SlotMachine {
 		btnGira.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				vinto=false;
 				try {
 					crediti = Integer.parseInt(textCrediti.getText());
 					bet = Integer.parseInt(textBet.getText());
@@ -180,21 +181,26 @@ public class SlotMachine {
 									});
 
 								}
-
 								if (vinto) {
 									vincita = vincita + (bet * 2);
 									textWinnerPaid.setText(Integer.toString(vincita));
+								}else{
+									if (crediti == 0) {
+										bet = 0;
+										crediti = 0;
+										textBet.setText(Integer.toString(bet));
+										textCrediti.setText(Integer.toString(crediti));
+									}
 								}
-								if (crediti == 0) {
-									bet = 0;
-									crediti = 0;
-									textBet.setText(Integer.toString(bet));
-									textCrediti.setText(Integer.toString(crediti));
-								}
+								
+
+								
 							};
 
 						};
 						t.start();
+						
+						
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
