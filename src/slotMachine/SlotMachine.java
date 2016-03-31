@@ -116,13 +116,13 @@ public class SlotMachine {
 						Thread t = new Thread() {
 							public void run() {
 								n = (int) (Math.random() * 100);
-								for (i = 0; i < 10; i++) {
+								for (i = 0; i < 11; i++) {
 
 									Display.getDefault().asyncExec(new Runnable() {
 										@Override
 										public void run() {
 											// TODO Auto-generated method stub
-											if (i < 9) {
+											if (i < 10) {
 												x[1] = (int) (Math.random() * 8);
 												lbl1.setImage(
 														SWTResourceManager.getImage(SlotMachine.class, img.get(x[1])));
@@ -183,6 +183,7 @@ public class SlotMachine {
 								if (vinto) {
 									vincita = vincita + (bet * 2);
 									textWinnerPaid.setText(Integer.toString(vincita));
+									vinto = false;
 								}else{
 									if (crediti == 0) {
 										bet = 0;
