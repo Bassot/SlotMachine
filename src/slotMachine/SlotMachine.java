@@ -122,6 +122,7 @@ public class SlotMachine {
 										@Override
 										public void run() {
 											// TODO Auto-generated method stub
+											System.out.println(i);
 											if (i < 10) {
 												x[1] = (int) (Math.random() * 8);
 												lbl1.setImage(
@@ -166,19 +167,20 @@ public class SlotMachine {
 													}
 												}
 											}
-											try {
-												Thread.sleep(100); // 1000
-																	// milliseconds
-																	// is
-																	// one
-																	// second.
-											} catch (InterruptedException ex) {
-												Thread.currentThread().interrupt();
-
-											}
+											
 											
 										}
 									});
+									try {
+										Thread.sleep(100); // 1000
+															// milliseconds
+															// is
+															// one
+															// second.
+									} catch (InterruptedException ex) {
+										Thread.currentThread().interrupt();
+
+									}
 
 								}
 								
