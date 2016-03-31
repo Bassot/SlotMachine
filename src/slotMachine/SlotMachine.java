@@ -104,7 +104,6 @@ public class SlotMachine {
 		btnGira.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				vinto=false;
 				try {
 					crediti = Integer.parseInt(textCrediti.getText());
 					bet = Integer.parseInt(textBet.getText());
