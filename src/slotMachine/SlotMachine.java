@@ -176,21 +176,12 @@ public class SlotMachine {
 												Thread.currentThread().interrupt();
 
 											}
+											
 										}
 									});
 
 								}
-								if (vinto) {
-									vincita = vincita + (bet * 2);
-									textWinnerPaid.setText(Integer.toString(vincita));
-								}else{
-									if (crediti == 0) {
-										bet = 0;
-										crediti = 0;
-										textBet.setText(Integer.toString(bet));
-										textCrediti.setText(Integer.toString(crediti));
-									}
-								}
+								
 								
 
 								
@@ -199,6 +190,18 @@ public class SlotMachine {
 						};
 						t.start();
 						
+						if (vinto) {
+							vincita = vincita + (bet * 2);
+							textWinnerPaid.setText(Integer.toString(vincita));
+							vinto=false;
+						}else{
+							if (crediti == 0) {
+								bet = 0;
+								crediti = 0;
+								textBet.setText(Integer.toString(bet));
+								textCrediti.setText(Integer.toString(crediti));
+							}
+						}
 						
 					}
 				} catch (Exception e1) {
