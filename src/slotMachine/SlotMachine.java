@@ -187,10 +187,11 @@ public class SlotMachine {
 							};
 
 						};
-						t.start();
 						
 						if (vinto) {
 							vincita = vincita + (bet * 2);
+							crediti=crediti+(bet*2);
+							textCrediti.setText(Integer.toString(crediti));
 							textWinnerPaid.setText(Integer.toString(vincita));
 							vinto=false;
 						}else{
@@ -201,6 +202,10 @@ public class SlotMachine {
 								textCrediti.setText(Integer.toString(crediti));
 							}
 						}
+						
+						t.start();
+						
+						
 						
 					}
 				} catch (Exception e1) {
@@ -231,6 +236,7 @@ public class SlotMachine {
 				textBet.setText("");
 				vincita = 0;
 				textWinnerPaid.setText(Integer.toString(vincita));
+				vinto=false;
 			}
 		});
 		btnReset.setBounds(21, 398, 75, 48);
@@ -241,14 +247,7 @@ public class SlotMachine {
 		btnPayTable.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				JOptionPane.showMessageDialog(null, "Hai vinto " + vincita + "Euro!!");
-				lbl1.setImage(null);
-				lbl2.setImage(null);
-				lbl3.setImage(null);
-				textCrediti.setText("");
-				textBet.setText("");
-				vincita = 0;
-				textWinnerPaid.setText(Integer.toString(vincita));
+				JOptionPane.showMessageDialog(null, "Anguria: 2x\nArancia: 2x\nBanana: 2x\nBar: 2x\nCiliegia: 2x\nLimone: 2x\nMela: 2x\nUva: 2x");
 			}
 		});
 		btnPayTable.setBounds(123, 398, 75, 48);
